@@ -1,0 +1,52 @@
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+  }
+}
+
+plugins {
+  id 'java-library'
+  id "net.ltgt.apt" version "0.21"
+}
+
+apply plugin: 'eclipse'
+apply plugin: "net.ltgt.apt"
+apply plugin: "net.ltgt.apt-eclipse"
+
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+
+
+dependencies {
+  
+
+}
+
+
+test {
+  useJUnitPlatform()
+}
+
+
+eclipse {
+    classpath {
+        file {
+            whenMerged {
+                def jre = entries.find { it.path.contains 'org.eclipse.jdt.launching.JRE_CONTAINER' }
+                jre.entryAttributes['module'] = false
+                // 
+            }
+        }
+    }
+}
+
+
+
+
